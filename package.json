@@ -82,6 +82,7 @@
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -106,6 +107,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "gh-pages": "^3.2.3",
     "uniswap-hayek-sdk": "^1.0.0"
   }
 }
