@@ -44,7 +44,8 @@ export default function VersionSwitch() {
   const version = useToggledVersion()
   const location = useLocation()
   const query = useParsedQueryString()
-  const versionSwitchAvailable = location.pathname === '/swap' || location.pathname === '/send'
+ // const versionSwitchAvailable = location.pathname === '/swap' || location.pathname === '/send'
+ const versionSwitchAvailable = false
 
   const toggleDest = useMemo(() => {
     return versionSwitchAvailable
@@ -57,6 +58,7 @@ export default function VersionSwitch() {
 
   const handleClick = useCallback(
     e => {
+      
       if (!versionSwitchAvailable) e.preventDefault()
     },
     [versionSwitchAvailable]
@@ -64,8 +66,10 @@ export default function VersionSwitch() {
 
   const toggle = (
     <VersionToggle enabled={versionSwitchAvailable} to={toggleDest} onClick={handleClick}>
-      <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>V2</VersionLabel>
-      <VersionLabel enabled={version === Version.v1 && versionSwitchAvailable}>V1</VersionLabel>
+    
+    <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>Get HYK Free</VersionLabel>
+   <VersionLabel enabled={version === Version.v1 && versionSwitchAvailable}></VersionLabel>
+  
     </VersionToggle>
   )
   return versionSwitchAvailable ? (

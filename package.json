@@ -108,6 +108,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "gh-pages": "^3.2.3",
-    "uniswap-hayek-sdk": "1.0.1"
+    "uniswap-hayek-sdk": "^1.0.2"
   }
 }
