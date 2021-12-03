@@ -178,7 +178,7 @@ export function useSwapCallback(
               })
           })
         )
-
+        
         // a successful estimation is a bignumber gas estimate and the next call is also a bignumber gas estimate
         const successfulEstimation = estimatedCalls.find(
           (el, ix, list): el is SuccessfulCall =>
@@ -198,7 +198,7 @@ export function useSwapCallback(
           },
           gasEstimate
         } = successfulEstimation
-
+        
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
           ...(value && !isZero(value) ? { value, from: account } : { from: account })

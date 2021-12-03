@@ -1,5 +1,6 @@
 import { stringify } from 'qs'
 import React, { useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
@@ -44,6 +45,8 @@ export default function VersionSwitch() {
   const version = useToggledVersion()
   const location = useLocation()
   const query = useParsedQueryString()
+  
+  const { t } = useTranslation()
  // const versionSwitchAvailable = location.pathname === '/swap' || location.pathname === '/send'
  const versionSwitchAvailable = false
 
@@ -58,16 +61,17 @@ export default function VersionSwitch() {
 
   const handleClick = useCallback(
     e => {
-      
+      window.location.href='https://hayek.link/dotc'
       if (!versionSwitchAvailable) e.preventDefault()
     },
     [versionSwitchAvailable]
   )
 
   const toggle = (
+    
     <VersionToggle enabled={versionSwitchAvailable} to={toggleDest} onClick={handleClick}>
     
-    <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>Get HYK Free</VersionLabel>
+    <VersionLabel enabled={version === Version.v2 || !versionSwitchAvailable}>{t('Go to D-OTC')}</VersionLabel>
    <VersionLabel enabled={version === Version.v1 && versionSwitchAvailable}></VersionLabel>
   
     </VersionToggle>
@@ -75,6 +79,6 @@ export default function VersionSwitch() {
   return versionSwitchAvailable ? (
     toggle
   ) : (
-    <MouseoverTooltip text="This page is only compatible with Uniswap V2.">{toggle}</MouseoverTooltip>
+    <MouseoverTooltip text={t("Go to D-OTC system")}>{toggle}</MouseoverTooltip>
   )
 }

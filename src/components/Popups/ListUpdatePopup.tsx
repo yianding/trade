@@ -1,6 +1,7 @@
 import { diffTokenLists, TokenList } from '@uniswap/token-lists'
 import React, { useCallback, useMemo } from 'react'
 import ReactGA from 'react-ga'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Text } from 'rebass'
 import { AppDispatch } from '../../state'
@@ -28,7 +29,7 @@ export default function ListUpdatePopup({
   const removePopup = useRemovePopup()
   const removeThisPopup = useCallback(() => removePopup(popKey), [popKey, removePopup])
   const dispatch = useDispatch<AppDispatch>()
-
+  const {t}=useTranslation()
   const handleAcceptUpdate = useCallback(() => {
     if (auto) return
     ReactGA.event({
@@ -61,7 +62,7 @@ export default function ListUpdatePopup({
           <>
             <div>
               <Text>
-                An update is available for the token list &quot;{oldList.name}&quot; (
+               {t('An update is available for the token list &quot;')} {oldList.name}&quot; (
                 {listVersionLabel(oldList.version)} to {listVersionLabel(newList.version)}).
               </Text>
               <ul>
@@ -73,7 +74,7 @@ export default function ListUpdatePopup({
                         {i === tokensAdded.length - 1 ? null : ', '}
                       </React.Fragment>
                     ))}{' '}
-                    added
+                   {t('added')}
                   </li>
                 ) : null}
                 {tokensRemoved.length > 0 ? (
@@ -84,18 +85,18 @@ export default function ListUpdatePopup({
                         {i === tokensRemoved.length - 1 ? null : ', '}
                       </React.Fragment>
                     ))}{' '}
-                    removed
+                    {t('removed')}
                   </li>
                 ) : null}
-                {numTokensChanged > 0 ? <li>{numTokensChanged} tokens updated</li> : null}
+                {numTokensChanged > 0 ? <li>{numTokensChanged} {t('tokens updated')}</li> : null}
               </ul>
             </div>
             <AutoRow>
               <div style={{ flexGrow: 1, marginRight: 12 }}>
-                <ButtonSecondary onClick={handleAcceptUpdate}>Accept update</ButtonSecondary>
+                <ButtonSecondary onClick={handleAcceptUpdate}>{t('Accept update')}</ButtonSecondary>
               </div>
               <div style={{ flexGrow: 1 }}>
-                <ButtonSecondary onClick={removeThisPopup}>Dismiss</ButtonSecondary>
+                <ButtonSecondary onClick={removeThisPopup}>{t('Dismiss')}</ButtonSecondary>
               </div>
             </AutoRow>
           </>
